@@ -23,7 +23,7 @@
                   </div>
                   
                   <div class="form-group">
-                     <input type="text" class="form-control" placeholder="Enter your Mobile No.">
+                     <input type="number" class="form-control" placeholder="Enter your Mobile No.">
                   </div>
                     
                 <a type="submit" href="#" class="btn botao-wpp">
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive } from '@nuxtjs/composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
     

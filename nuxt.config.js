@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'stage',
+    title: 'R K pizzeria',
     htmlAttrs: {
       lang: 'en'
     },

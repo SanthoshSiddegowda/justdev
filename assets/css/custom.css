@@ -319,6 +319,7 @@ label {
 
 /* map iframe */
 iframe {
+    display: none;
 	width: 100%;
 	border: 0;
 }

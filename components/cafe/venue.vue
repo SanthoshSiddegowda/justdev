@@ -1,12 +1,40 @@
 <template>
     <div>
-        <h4> Lorem ipsum dolor sit amet,<br> consectetur adipiscing elit,<br> sed do eiusmod<br> Pune 411058</h4><br>
-        <iframe src="https://www.google.com/maps/d/embed?mid=1UMEBYRnM0KZhrhqikVv3YigwUd0" width="640" height="300"></iframe>
+        <div class="contactForm">	
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter your name">
+                    </div>
+                  
+                    <div class="form-group">
+                         <input type="number" class="form-control" placeholder="Enter your Mobile No.">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="number" class="form-control" placeholder="Date">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="number" class="form-control" placeholder="Time">
+                    </div>
+
+                    <div class="form-group">
+                        <textarea type="number" class="form-control" placeholder="Anything if specific (Optional)"></textarea>
+                    </div>
+                
+                <a type="submit" 
+                class="btn botao-wpp"
+                >
+                <i class="fa fa-whatsapp"></i>
+                send whatsapp Booking
+                </a>
+                </form>
+            </div>
     </div>
 </template>
 
 <script>
-import { defineComponent, reactive } from '@nuxtjs/composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
     

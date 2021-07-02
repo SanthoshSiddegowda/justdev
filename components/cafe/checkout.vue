@@ -51,7 +51,7 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
+<style>
 .botao-wpp {
   text-decoration: none;
   color: #eee;

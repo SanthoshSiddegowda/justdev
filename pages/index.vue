@@ -21,11 +21,13 @@
                     v-if="activeTab === 2"
                   />
                 </div>
-              <CafeProceed />
+              <CafeProceed
+                v-if="activeTab === 0"
+              />
             </div>
           </div>
         </div>
-        <CafeCheckout />
+        <CafeCheckout/>
       </div>
     </div>
   </div>
@@ -54,5 +56,25 @@ export default defineComponent({
 </script>
 
 <style>
+.botao-wpp {
+  text-decoration: none;
+  color: #eee;
+  display: inline-block;
+  background-color: #25d366;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border-radius: 3px;
+}
 
+.botao-wpp:hover {
+  background-color: darken(#25d366, 5%);
+}
+
+.botao-wpp:focus {
+  background-color: darken(#25d366, 15%);
+}   
+
+.takeaway {
+    font-size: 16px;
+}
 </style>

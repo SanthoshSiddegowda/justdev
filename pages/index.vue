@@ -14,7 +14,7 @@
                   <CafeLists 
                     v-if="activeTab == 0"
                   />
-                  <CafeVenue
+                  <CafeReservation
                     v-if="activeTab === 1"
                   />
                   <CafeTerms

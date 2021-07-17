@@ -45,7 +45,9 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/composition-api/module'
+    '@nuxtjs/composition-api/module',
+    '@nuxtjs/google-fonts',
+    '@nuxtjs/pwa'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -58,5 +60,18 @@ export default {
 
   generate: {
     interval: 2000,
+  },
+
+  googleFonts: {
+    families: {
+      "Rubik": {
+        // weights
+        wght: [300],
+      },
+    }
+  },
+
+  pwa: {
+    icon: false // disables the icon module
   }
 }

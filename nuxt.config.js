@@ -47,7 +47,7 @@ export default {
   buildModules: [
     '@nuxtjs/composition-api/module',
     '@nuxtjs/google-fonts',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -66,12 +66,8 @@ export default {
     families: {
       "Rubik": {
         // weights
-        wght: [300],
+        wght: [400],
       },
     }
   },
-
-  pwa: {
-    icon: false // disables the icon module
-  }
 }

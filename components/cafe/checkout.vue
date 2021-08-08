@@ -23,13 +23,13 @@
 											<input type="number" class="form-control" placeholder="Enter your Mobile No.">
 									</div>
 									<div class="form-group">
-										<div v-for="(order, ind) in orders" :key="order.product.price">
-											<div class="ticketBox">
+									<div v-for="(list, index) in lists.items" :key="list.item">
+											<div class="ticketBox" v-if="list.quantity > 0">
 												<div class="row">
 													<div class="col-xs-6">
 														<div class="ticket-name">
-															{{order.product.name}}
-															<span>{{order.product.level}}</span>
+															{{ list.name }}
+															<span>{{ list.level }}</span>
 														</div>
 													</div>
 													<div class="col-xs-6">
@@ -37,26 +37,42 @@
 															<div class="ticket-control">
 																<div class="input-group">
 																	<span class="input-group-btn">
-																		<button type="button" class="btn btn-default btn-number">
+																		<button
+																			type="button"
+																			class="btn btn-default btn-number"
+																			@click="addRemoveQuantity(index, 'remove')"
+																			:class="[list.quantity == 0 ? 'disabled' : '']"
+																		>
 																			<span class="glyphicon glyphicon-minus"></span>
 																		</button>
 																	</span>
-																	<input type="text" class="form-control input-number"
-																		:value=order.product.quantity
+																	<input
+																		type="text"
+																		class="form-control input-number"
+																		v-model="list.quantity"
 																	/>
 																	<span class="input-group-btn">
-																		<button type="button" class="btn btn-default btn-number mt-1">
+																		<button
+																			type="button"
+																			class="btn btn-default btn-number mt-1"
+																			@click="addRemoveQuantity(index, 'add')"
+																		>
 																			<span class="glyphicon glyphicon-plus"></span>
 																		</button>
 																	</span>
 																</div>
 															</div>
-															<p class="price">{{order.product.price}}</p>
+															<p class="price">&#8377;{{ list.base_price }}</p>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
+									</div>
+									<div class="form-group">
+											<h3 class="total-amount"> 
+												Total: <span class="total-amount"> {{totalAmount}} &#8377; </span>
+											</h3>
 									</div>	
 									<a type="submit" href="https://api.whatsapp.com/send?text=Hi%2C%20I%27d%20like%20to%20place%20an%20order%20%F0%9F%91%87%0A%0ADelivery%20Order%20No%3A%20605%0A%0A---------%0A%F0%9F%94%981%20X%20Margherita(standard)%20-%20Rs%20250%0A%0A%F0%9F%94%982%20X%20Farm%20House(standard)%20-%20Rs%20300%0A%0A---------%0A%F0%9F%A7%BE%20Total%3A%20Rs%20550%0A---------%0A%0A%20%20%20%0A%F0%9F%97%92%20Comment%0A%20%20%20%0A%0A%F0%9F%93%8D%20Delivery%20Details%0A%0AClient%3A%20%0AAddress%3A%2028%2C%2018th%20Cross%20Rd%2C%20Sector%207%2C%20HSR%20Layout%2C%0ADelivery%20time%3A%2012%3A00%20-%2012%3A30%0A%0A%0A%0ARk%20Pizza%20will%20confirm%20your%20order%20upon%20receiving%20the%20message.%0A%0A%0A%20%20%20%0A%F0%9F%92%B3%20Payment%20Options%0AWe%20accept%20Cash%20On%20Delivery%20and%20direct%20payments.&phone=389%2071%20605%20048" class="btn botao-wpp">
 									<i class="fa fa-whatsapp"></i>
@@ -75,7 +91,7 @@
 import { defineComponent, ref, useStore, watch } from '@nuxtjs/composition-api'
 
 export default defineComponent({
-
+		props: ['lists'],
 		setup() {	
 			const store = useStore()
 			
@@ -84,23 +100,19 @@ export default defineComponent({
 				orders.value = newValue
 			})
 
-			function addQuantity(index) {
-				orders.product[index].quantity += 1;
-				if (orders.product[index].quantity != 1) {
-					orders.product[index].price += orders.product[index].base_price;
-				}
-				store.commit("addToCart", orders.product[index]);
+			function addRemoveQuantity(index, type) {
+				this.$parent.addRemoveQuantity(index, type)
 			}
 
-			function removeQuantity(index) {
-				orders.product[index].quantity -= 1;
-				orders.product[index].price -= orders.product[index].base_price
-				store.commit("reduceTotal", orders.product[index].base_price);
-			}
+			let totalAmount = ref(0);
+			watch(() => store.state.total,(newValue) => {
+				totalAmount.value = newValue
+			})
+			
 			return {
 				orders,
-				addQuantity,
-				removeQuantity
+				addRemoveQuantity,
+				totalAmount
 			}
 		}
 		

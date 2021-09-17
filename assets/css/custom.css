@@ -112,10 +112,11 @@ label {
     height: 10vw;	
     padding: 20px;
 	background-position: center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-    background-size: cover;
+	-webkit-background-size: contain;
+	-moz-background-size: contain;
+	-o-background-size: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .logo h1 {
@@ -444,7 +445,7 @@ iframe {
 	.modal.right .modal-dialog {
 		position: fixed;
 		margin: auto;
-		width: 350px;
+		width: 450px;
 		height: 100%;
 		-webkit-transform: translate3d(0%, 0, 0);
 		    -ms-transform: translate3d(0%, 0, 0);

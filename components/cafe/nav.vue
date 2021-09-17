@@ -15,7 +15,7 @@ export default defineComponent({
 	setup()
 	{
 		let nav = reactive({
-			'tabs' :  [ 'Menus', 'Book A Table' ],
+			'tabs' :  [ 'Products'],
 			'activeTab' : 0,
 		});
 		

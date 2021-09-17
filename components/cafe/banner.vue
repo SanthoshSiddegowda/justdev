@@ -15,7 +15,7 @@ export default defineComponent({
 	{
 		let banner = reactive({
 			'title':'R K Pizzeria',
-			'image': "https://i.ibb.co/k2tmpVD/R-K.png"
+			'image': "https://i.ibb.co/JmY87m0/shell.png"
 		});
 
 		return {

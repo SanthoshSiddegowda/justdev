@@ -43,7 +43,11 @@
 import { defineComponent, ref, reactive, useStore } from '@nuxtjs/composition-api'
 
 export default defineComponent({
-
+	head() {
+		return {
+			title: "Shell - Bizom store"
+		};
+	},
 	setup() {
 		let activeTab = ref(0);
 

@@ -1,40 +1,44 @@
 <template>
 	<ul class="nav nav-tabs">
-		<li v-for="(tab, index) in nav.tabs" :key="tab" role="tab" :class="{ 'active': (nav.activeTab == index) }">
+		<li
+			v-for="(tab, index) in nav.tabs"
+			:key="tab"
+			role="tab"
+			:class="{ active: nav.activeTab == index }"
+		>
 			<a @click="updateTab(index)">
-				{{tab}}
+				{{ tab }}
 			</a>
 		</li>
 	</ul>
 </template>
 
 <script>
-import { defineComponent, reactive } from '@nuxtjs/composition-api'
+import { defineComponent, reactive } from "@nuxtjs/composition-api";
 
 export default defineComponent({
-	setup()
-	{
+	setup() {
 		let nav = reactive({
-			'tabs' :  [ 'Product' ],
-			'activeTab' : 0,
+			tabs: ["Product"],
+			activeTab: 0,
 		});
-		
+
 		function updateTab(tabNumber) {
-			nav.activeTab = tabNumber
-			this.$emit('tabs', tabNumber)
+			nav.activeTab = tabNumber;
+			this.$emit("tabs", tabNumber);
 		}
 
 		return {
 			nav,
-			updateTab
+			updateTab,
 		};
-	}
-})
+	},
+});
 </script>
 
 <style scoped>
-	[role=tab]{
-		cursor:pointer
-	}
-</style>>
-
+[role="tab"] {
+	cursor: pointer;
+}
+</style>
+>

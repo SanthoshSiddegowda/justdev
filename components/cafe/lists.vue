@@ -23,10 +23,21 @@
 											<button
 												type="button"
 												class="btn btn-default btn-number"
-												@click="addRemoveQuantity(index, 'remove')"
-												:class="[list.quantity == 0 ? 'disabled' : '']"
+												@click="
+													addRemoveQuantity(
+														index,
+														'remove'
+													)
+												"
+												:class="[
+													list.quantity == 0
+														? 'disabled'
+														: '',
+												]"
 											>
-												<span class="glyphicon glyphicon-minus"></span>
+												<span
+													class="glyphicon glyphicon-minus"
+												></span>
 											</button>
 										</span>
 										<input
@@ -38,19 +49,32 @@
 											<button
 												type="button"
 												class="btn btn-default btn-number mt-1"
-												@click="addRemoveQuantity(index, 'add')"
+												@click="
+													addRemoveQuantity(
+														index,
+														'add'
+													)
+												"
 											>
-												<span class="glyphicon glyphicon-plus"></span>
+												<span
+													class="glyphicon glyphicon-plus"
+												></span>
 											</button>
 										</span>
 									</div>
 								</div>
-								<p class="price">&#8377;{{ list.base_price }}</p>
+								<p class="price">
+									&#8377;{{ list.base_price }}
+								</p>
 							</div>
 						</div>
 					</div>
 					<div class="ticket-description">
-						<p><strong>Description:</strong> <br />{{ list.description }}</p>
+						<p>
+							<strong>Description:</strong> <br />{{
+								list.description
+							}}
+						</p>
 					</div>
 				</div>
 			</div>
@@ -62,14 +86,14 @@
 import { defineComponent, reactive } from "@nuxtjs/composition-api";
 
 export default defineComponent({
-	props: ['lists'],
+	props: ["lists"],
 	setup() {
 		function addRemoveQuantity(index, type) {
-			this.$parent.addRemoveQuantity(index, type)
+			this.$parent.addRemoveQuantity(index, type);
 		}
 
 		return {
-			addRemoveQuantity
+			addRemoveQuantity,
 		};
 	},
 });

@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <Nuxt />
-  </div>
+	<div>
+		<Nuxt />
+	</div>
 </template>
 
 <style>
-  body {
-    font-family: 'Rubik', sans-serif;
-  }
+body {
+	font-family: "Rubik", sans-serif;
+}
 </style>

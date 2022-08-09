@@ -6,60 +6,62 @@
 				<div class="col-sm-7 right-wrapper">
 					<div class="event-ticket-wrapper">
 						<div class="event-tab">
-							<CafeNav
-								@tabs = "toggleTabs"
-							/>     
-								<!-- Tab panes -->
-								<div class="tab-content">
-									<CafeLists 
-										v-if="activeTab == 0"
-										:lists = lists
-										@click="addRemoveQuantity()"
-									/>
-									<CafeReservation
-										v-if="activeTab === 1"
-									/>
-									<CafeTerms
-										v-if="activeTab === 2"
-									/>
-								</div>
+							<CafeNav @tabs="toggleTabs" />
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<CafeLists
+									v-if="activeTab == 0"
+									:lists="lists"
+									@click="addRemoveQuantity()"
+								/>
+								<CafeReservation v-if="activeTab === 1" />
+								<CafeTerms v-if="activeTab === 2" />
+							</div>
 							<CafeProceed
-								:lists = lists
+								:lists="lists"
 								v-if="activeTab === 0"
 							/>
 						</div>
 					</div>
 				</div>
-				<CafeCheckout
-					:lists = lists
-				/>
+				<CafeCheckout :lists="lists" />
 			</div>
 		</div>
 	</div>
-	
 </template>
 
 <script>
-import { defineComponent, ref, reactive, useStore } from '@nuxtjs/composition-api'
+import {
+	defineComponent,
+	ref,
+	reactive,
+	useStore,
+} from "@nuxtjs/composition-api";
+import { companyApi } from "@/api/company";
 
 export default defineComponent({
-
 	setup() {
+		const { fetchCompany } = companyApi();
+		const store = useStore();
 		let activeTab = ref(0);
 
-		const toggleTabs = function(tabNumber) {
+		const toggleTabs = function (tabNumber) {
 			activeTab.value = tabNumber;
-		}
-
-		const store = useStore();
+		};
 
 		function addRemoveQuantity(index, type) {
-			if(type == 'add') {
-				addQuantity(index)
-			} else if(type == 'remove') {
-				removeQuantity(index)
+			if (type == "add") {
+				addQuantity(index);
+			} else if (type == "remove") {
+				removeQuantity(index);
 			}
 		}
+
+		const loadCompany = async () => {
+			const response = await fetchCompany();
+			store.commit("addCompanyDetails", response.data);
+		};
+		loadCompany();
 
 		let lists = reactive({
 			items: [
@@ -117,7 +119,6 @@ export default defineComponent({
 			cart: [],
 		});
 
-
 		function addQuantity(index) {
 			lists.items[index].quantity += 1;
 			if (lists.items[index].quantity != 1) {
@@ -128,22 +129,20 @@ export default defineComponent({
 
 		function removeQuantity(index) {
 			lists.items[index].quantity -= 1;
-			lists.items[index].price -= lists.items[index].base_price
+			lists.items[index].price -= lists.items[index].base_price;
 			store.commit("reduceTotal", lists.items[index].base_price);
 		}
 
-		
 		return {
 			activeTab,
 			lists,
 			toggleTabs,
 			addQuantity,
 			removeQuantity,
-			addRemoveQuantity
+			addRemoveQuantity,
 		};
-
-	} 
-})
+	},
+});
 </script>
 
 <style>
@@ -163,9 +162,9 @@ export default defineComponent({
 
 .botao-wpp:focus {
 	background-color: darken(#25d366, 15%);
-}   
+}
 
 .takeaway {
-		font-size: 16px;
+	font-size: 16px;
 }
 </style>

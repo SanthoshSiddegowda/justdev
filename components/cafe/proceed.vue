@@ -9,7 +9,7 @@
 					</div>
 					<div class="col-xs-6">
 						<div class="text-right">
-							<a class="btn" data-toggle="modal" data-target="#ticket-details">PROCEED</a>
+							<a class="btn" data-toggle="modal" data-target="#ticket-details" :class="{ disabled: totalAmount < 1 }">PROCEED</a>
 						</div>
 					</div>
 				</div>
@@ -23,15 +23,11 @@ import { defineComponent, ref, useStore, watch } from '@nuxtjs/composition-api'
 export default defineComponent({
 
 	setup() {
-
 		const store = useStore()
-		
-		let totalAmount = ref(0);
-
+		var totalAmount = ref(0);
 		watch(() => store.state.total,(newValue) => {
 			totalAmount.value = newValue
 		 })
-
 		return {
 			totalAmount
 		}

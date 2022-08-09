@@ -1,25 +1,33 @@
 <template>
-  <div>
+	<div>
 		<div class="col-sm-5 left-wrapper">
-				<div class="event-banner-wrapper" :style="{ backgroundImage:`url(${banner.image})` }">
-				</div>
+			<div class="event-banner-wrapper" :style="{ backgroundImage:`url(${banner.image_url})` }">
+			</div>
 		</div>
-  </div>
+	</div>
 </template>
-
 <script>
-import { defineComponent, reactive } from '@nuxtjs/composition-api'
+import { computed, defineComponent, ref, useStore } from '@nuxtjs/composition-api'
+import { companyApi } from '@/api/company'
 
 export default defineComponent({
 	setup() 
 	{
-		let banner = reactive({
-			'title':'R K Pizzeria',
-			'image': "https://i.ibb.co/JmY87m0/shell.png"
-		});
+		const { fetchCompany } = companyApi()
+		const store = useStore()
+		const banner = ref([])
+
+		const loadCompany = async () => {
+			const response = await fetchCompany()
+			store.commit("addCompanyDetails", response.data)
+			banner.value = response.data
+			console.log( store.state.companyDetails )
+		}
+		loadCompany()
 
 		return {
 			banner,
+			loadCompany
 		}
 	}
 })

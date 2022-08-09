@@ -1,9 +1,10 @@
 export const strict = false;
 
 export const state = () => ({
+	total: 0,
 	products: [],
-	total: 0
-  })
+	companyDetails: null,
+})
   
 export const mutations = {
 	
@@ -19,6 +20,16 @@ export const mutations = {
 
 	reduceTotal(state, Price) {
 		state.total -= Price
-	}
+	},
+
+	addCompanyDetails( state, details ) {
+		state.companyDetails = details
+	},
 	
+}
+
+export const getter = {
+	getCompanyDetails(state) {
+		return state.companyDetails
+	}
 }

@@ -38,6 +38,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/api.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -48,6 +49,7 @@ export default {
     '@nuxtjs/composition-api/module',
     '@nuxtjs/google-fonts',
     '@nuxtjs/pwa',
+    '@nuxtjs/axios'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -69,5 +71,10 @@ export default {
         wght: [400],
       },
     }
+  },
+
+  axios: {
+    baseURL: process.env.API_BASE_URL,
+    retry: { retries: 3 },
   },
 }

@@ -43,7 +43,11 @@
 import { defineComponent, ref, reactive, useStore } from '@nuxtjs/composition-api'
 
 export default defineComponent({
-
+	head() {
+		return {
+			title: "Shell - Bizom store"
+		};
+	},
 	setup() {
 		let activeTab = ref(0);
 
@@ -65,54 +69,54 @@ export default defineComponent({
 			items: [
 				{
 					uuid: 1,
-					name: "Margherita",
+					name: "SHELL HELIX FULLY SYNTHETIC MOTOR OILS",
 					level: "Standard",
-					price: 250,
-					base_price: 250,
+					price: 315,
+					base_price: 315,
 					quantity: 0,
 					description:
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+						"Shell Helix fully synthetic engine oils are manufactured from 100% synthetic base stock and high-quality additives to achieve higher performance levels than both synthetic technology and mineral oils."
 				},
 				{
 					uuid: 2,
-					name: "Double Cheese Margherita",
+					name: "SHELL HELIX SEMI SYNTHETIC MOTOR OILS",
 					level: "Standard",
-					price: 300,
-					base_price: 300,
+					price: 425,
+					base_price: 425,
 					quantity: 0,
 					description:
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+						"Shell Helix semi-synthetic or ‘synthetic technology’ engine oils make use of both synthetic and mineral base stocks to achieve higher performance levels that can be formulated from mineral oils alone.",
 				},
 				{
 					uuid: 3,
-					name: "Farm House",
+					name: "SHELL HELIX MINERAL MOTOR OILS",
 					level: "Standard",
-					price: 200,
-					base_price: 200,
+					price: 375,
+					base_price: 375,
 					quantity: 0,
 					description:
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+						"Mineral motor engine oil is the fraction of naturally occurring crude oil with the right properties for lubricating engines. Shell Helix mineral engine oils help to protect your engine against harmful sludge to help keep engines clean.",
 				},
-				{
-					uuid: 4,
-					name: "Peppy Paneer",
-					level: "Standard",
-					price: 230,
-					quantity: 0,
-					base_price: 230,
-					description:
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-				},
-				{
-					uuid: 5,
-					name: "Mexican Green Wave",
-					level: "Standard",
-					price: 280,
-					quantity: 0,
-					base_price: 280,
-					description:
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-				},
+				// {
+				// 	uuid: 4,
+				// 	name: "Peppy Paneer",
+				// 	level: "Standard",
+				// 	price: 230,
+				// 	quantity: 0,
+				// 	base_price: 230,
+				// 	description:
+				// 		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+				// },
+				// {
+				// 	uuid: 5,
+				// 	name: "Mexican Green Wave",
+				// 	level: "Standard",
+				// 	price: 280,
+				// 	quantity: 0,
+				// 	base_price: 280,
+				// 	description:
+				// 		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+				// },
 			],
 			cart: [],
 		});

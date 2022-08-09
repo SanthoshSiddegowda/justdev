@@ -1,5 +1,5 @@
 <template>
-  	<div>
+	<div>
 		<div class="col-sm-5 left-wrapper">
 			<div class="event-banner-wrapper" :style="{ backgroundImage:`url(${banner.image_url})` }">
 			</div>
@@ -15,8 +15,7 @@ export default defineComponent({
 	{
 		const { fetchCompany } = companyApi()
 		const store = useStore()
-
-   	 	const banner = ref([])
+		const banner = ref([])
 
 		const loadCompany = async () => {
 			const response = await fetchCompany()

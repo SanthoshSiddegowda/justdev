@@ -1,34 +1,44 @@
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
-  head: {
-    title: 'Bizom Store',
-    htmlAttrs: {
-      lang: 'en'
-    },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" }
-    ],
-    script: [
-      {
-        src:'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js',
-        body: true
-      },
-      {
-        src:'js/bootstrap.min.js',
-        body:true,
-      },
-      {
-        src:'js/allscript.js',
-        body: true
-      }
-    ]
-  },
+	// Global page headers: https://go.nuxtjs.dev/config-head
+	head: {
+		title: "Just Ticket",
+		htmlAttrs: {
+			lang: "en",
+		},
+		meta: [
+			{ charset: "utf-8" },
+			{
+				name: "viewport",
+				content: "width=device-width, initial-scale=1",
+			},
+			{ hid: "description", name: "description", content: "" },
+		],
+		link: [
+			{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+			{
+				rel: "stylesheet",
+				href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
+			},
+			{
+				rel: "stylesheet",
+				href: "https://unpkg.com/placeholder-loading/dist/css/placeholder-loading.min.css",
+			},
+		],
+		script: [
+			{
+				src: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js",
+				body: true,
+			},
+			{
+				src: "js/bootstrap.min.js",
+				body: true,
+			},
+			{
+				src: "js/allscript.js",
+				body: true,
+			},
+		],
+	},
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [

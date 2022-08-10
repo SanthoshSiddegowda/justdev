@@ -7,24 +7,32 @@
 			:class="{ active: nav.activeTab == index }"
 		>
 			<a @click="updateTab(index)">
-				{{ tab }}
+				{{ tab.name }}
 			</a>
 		</li>
 	</ul>
 </template>
 
 <script>
-import { defineComponent, reactive } from "@nuxtjs/composition-api";
+import { defineComponent, watch, useStore, ref } from "@nuxtjs/composition-api";
 
 export default defineComponent({
 	setup() {
-		let nav = reactive({
+		const store = useStore();
+		let nav = ref({
 			tabs: ["Product"],
 			activeTab: 0,
 		});
 
+		watch(
+			() => store.state.companyDetails,
+			(details) => {
+				nav.value.tabs = details.categories;
+			}
+		);
+
 		function updateTab(tabNumber) {
-			nav.activeTab = tabNumber;
+			nav.value.activeTab = tabNumber;
 			this.$emit("tabs", tabNumber);
 		}
 

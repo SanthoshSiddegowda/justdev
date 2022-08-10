@@ -3,7 +3,7 @@
 		<div class="col-sm-5 left-wrapper">
 			<div
 				class="event-banner-wrapper"
-				:style="{ backgroundImage: `url(${banner.image_url})` }"
+				:style="{ backgroundImage: `url(${banner})` }"
 			></div>
 		</div>
 	</div>
@@ -19,8 +19,7 @@ export default defineComponent({
 		watch(
 			() => store.state.companyDetails,
 			(details) => {
-				banner.value = details;
-				console.log("test");
+				banner.value = details.image_url;
 			}
 		);
 

@@ -9,15 +9,14 @@
 	</div>
 </template>
 <script>
-import { defineComponent, ref, useStore, watch } from '@nuxtjs/composition-api'
-import { companyApi } from '@/api/company'
+import { defineComponent, ref, useStore, watch } from "@nuxtjs/composition-api";
+import { companyApi } from "@/api/company";
 
 export default defineComponent({
-	setup() 
-	{
-		const { fetchCompany } = companyApi()
-		const store = useStore()
-		const banner = ref([])
+	setup() {
+		const { fetchCompany } = companyApi();
+		const store = useStore();
+		const banner = ref([]);
 
 		watch(
 			() => store.state.companyDetails,
@@ -27,12 +26,10 @@ export default defineComponent({
 		);
 
 		return {
-			banner
-		}
-	}
-})
+			banner,
+		};
+	},
+});
 </script>
 
-<style>
-
-</style>
+<style></style>

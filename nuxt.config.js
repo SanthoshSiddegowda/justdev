@@ -40,51 +40,44 @@ export default {
 		],
 	},
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '@/assets/css/bootstrap.min.css',
-    '@/assets/css/custom.css'
-  ],
+	// Global CSS: https://go.nuxtjs.dev/config-css
+	css: ["@/assets/css/bootstrap.min.css", "@/assets/css/custom.css"],
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '~/plugins/api.js'
-  ],
+	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
+	plugins: ["~/plugins/api.js"],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+	// Auto import components: https://go.nuxtjs.dev/config-components
+	components: true,
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    '@nuxtjs/composition-api/module',
-    '@nuxtjs/google-fonts',
-    '@nuxtjs/pwa',
-    '@nuxtjs/axios'
-  ],
+	// Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
+	buildModules: [
+		"@nuxtjs/composition-api/module",
+		"@nuxtjs/google-fonts",
+		"@nuxtjs/pwa",
+		"@nuxtjs/axios",
+	],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-  ],
+	// Modules: https://go.nuxtjs.dev/config-modules
+	modules: [],
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  },
+	// Build Configuration: https://go.nuxtjs.dev/config-build
+	build: {},
 
-  generate: {
-    interval: 2000,
-  },
+	generate: {
+		interval: 2000,
+	},
 
-  googleFonts: {
-    families: {
-      "Rubik": {
-        // weights
-        wght: [400],
-      },
-    }
-  },
+	googleFonts: {
+		families: {
+			Rubik: {
+				// weights
+				wght: [400],
+			},
+		},
+	},
 
-  axios: {
-    baseURL: process.env.API_BASE_URL,
-    retry: { retries: 3 },
-  },
-}
+	axios: {
+		baseURL: process.env.API_BASE_URL,
+		retry: { retries: 3 },
+	},
+};

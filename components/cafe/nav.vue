@@ -1,6 +1,11 @@
 <template>
 	<ul class="nav nav-tabs">
-		<li v-for="(tab, index) in nav.tabs" :key="tab" role="tab" :class="{ 'active': (nav.activeTab == index) }">
+		<li
+			v-for="(tab, index) in nav.tabs"
+			:key="tab.uuid"
+			role="tab"
+			:class="{ active: nav.activeTab == index }"
+		>
 			<a @click="updateTab(index)">
 				{{ tab.name }}
 			</a>
@@ -15,7 +20,7 @@ export default defineComponent({
 	setup() {
 		const store = useStore();
 		let nav = ref({
-			tabs: ["Product"],
+			tabs: [],
 			activeTab: 0,
 		});
 
@@ -33,15 +38,15 @@ export default defineComponent({
 
 		return {
 			nav,
-			updateTab
+			updateTab,
 		};
-	}
-})
+	},
+});
 </script>
 
 <style scoped>
-	[role=tab]{
-		cursor:pointer
-	}
-</style>>
-
+[role="tab"] {
+	cursor: pointer;
+}
+</style>
+>

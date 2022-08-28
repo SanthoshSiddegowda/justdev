@@ -31,19 +31,20 @@
 </template>
 
 <script>
-import {
-	defineComponent,
-	ref,
-	reactive,
-	useStore,
-} from "@nuxtjs/composition-api";
+import { defineComponent, ref, watch, useStore } from "@nuxtjs/composition-api";
 import { companyApi } from "@/api/company";
+import { productApi } from "@/api/product";
 
 export default defineComponent({
 	setup() {
 		const { fetchCompany } = companyApi();
+		const { fetchProducts } = productApi();
 		const store = useStore();
 		let activeTab = ref(0);
+		let lists = ref({
+			items: [],
+			cart: [],
+		});
 
 		const toggleTabs = function (tabNumber) {
 			activeTab.value = tabNumber;
@@ -59,78 +60,37 @@ export default defineComponent({
 
 		const loadCompany = async () => {
 			const response = await fetchCompany();
-			store.commit("addCompanyDetails", response.data);
+			store.commit("addCompanyDetails", response);
 		};
 		loadCompany();
 
-		let lists = reactive({
-			items: [
-				{
-					uuid: 1,
-					name: "Margherita",
-					level: "Standard",
-					price: 250,
-					base_price: 250,
-					quantity: 0,
-					description:
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-				},
-				{
-					uuid: 2,
-					name: "Double Cheese Margherita",
-					level: "Standard",
-					price: 300,
-					base_price: 300,
-					quantity: 0,
-					description:
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-				},
-				{
-					uuid: 3,
-					name: "Farm House",
-					level: "Standard",
-					price: 200,
-					base_price: 200,
-					quantity: 0,
-					description:
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-				},
-				{
-					uuid: 4,
-					name: "Peppy Paneer",
-					level: "Standard",
-					price: 230,
-					quantity: 0,
-					base_price: 230,
-					description:
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-				},
-				{
-					uuid: 5,
-					name: "Mexican Green Wave",
-					level: "Standard",
-					price: 280,
-					quantity: 0,
-					base_price: 280,
-					description:
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-				},
-			],
-			cart: [],
-		});
+		watch(
+			() => store.state.companyDetails,
+			(details) => {
+				const loadProducts = async () => {
+					const response = await fetchProducts(details.uuid);
+					lists.value.items = response;
+				};
+				loadProducts();
+			}
+		);
 
 		function addQuantity(index) {
-			lists.items[index].quantity += 1;
-			if (lists.items[index].quantity != 1) {
-				lists.items[index].price += lists.items[index].base_price;
+			lists.value.items[index].quantity += 1;
+			if (lists.value.items[index].quantity != 1) {
+				lists.value.items[index].price += Number(
+					lists.value.items[index].base_price
+				);
 			}
-			store.commit("addToCart", lists.items[index]);
+			store.commit("addToCart", lists.value.items[index]);
 		}
 
 		function removeQuantity(index) {
-			lists.items[index].quantity -= 1;
-			lists.items[index].price -= lists.items[index].base_price;
-			store.commit("reduceTotal", lists.items[index].base_price);
+			lists.value.items[index].quantity -= 1;
+			lists.value.items[index].price -= Number(
+				lists.value.items[index].base_price
+			);
+			store.commit("reduceTotal", lists.value.items[index].base_price);
 		}
 
 		return {

@@ -1,16 +1,16 @@
-import { useContext } from '@nuxtjs/composition-api'
+import { useContext } from "@nuxtjs/composition-api";
 
 export const companyApi = () => {
-	const { $api } = useContext()
+	const { $api } = useContext();
 
-	const fetchCompany = async (routeName) => {
-		const response = await $api.post('companies', {
-				domain: window.location.host
-		})
-		return response
-	}
+	const fetchCompany = async () => {
+		const response = await $api.post("get-my-details", {
+			domain: window.location.host,
+		});
+		return response.data;
+	};
 
 	return {
 		fetchCompany,
-	}
-}
+	};
+};

@@ -31,11 +31,18 @@
 </template>
 
 <script>
-import { defineComponent, ref, watch, useStore } from "@nuxtjs/composition-api";
+import {
+	defineComponent,
+	ref,
+	watch,
+	useStore,
+	useMeta,
+} from "@nuxtjs/composition-api";
 import { companyApi } from "@/api/company";
 import { productApi } from "@/api/product";
 
 export default defineComponent({
+	head: {},
 	setup() {
 		const { fetchCompany } = companyApi();
 		const { fetchProducts } = productApi();
@@ -45,6 +52,9 @@ export default defineComponent({
 			items: [],
 			cart: [],
 		});
+
+		const { title } = useMeta();
+		const { link } = useMeta();
 
 		const toggleTabs = function (tabNumber) {
 			activeTab.value = tabNumber;
@@ -67,6 +77,7 @@ export default defineComponent({
 		watch(
 			() => store.state.companyDetails,
 			(details) => {
+				title.value = details.name;
 				const loadProducts = async () => {
 					const response = await fetchProducts(details.uuid);
 					lists.value.items = response;

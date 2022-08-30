@@ -9,10 +9,10 @@ export const state = () => ({
 export const mutations = {
 	addToCart(state, product) {
 		var exists = state.products.some(function (field) {
-			return field.product.uuid === product.uuid;
+			return field.uuid === product.uuid;
 		});
 		if (!exists) {
-			state.products.push({ product });
+			state.products.push(product);
 		}
 		state.total += Number(product.base_price);
 	},

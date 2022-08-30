@@ -141,11 +141,10 @@
 								<a
 									type="submit"
 									:class="{ disabled: totalAmount < 1 }"
-									href="https://api.whatsapp.com/send?text=Hi%2C%20I%27d%20like%20to%20place%20an%20order%20%F0%9F%91%87%0A%0ADelivery%20Order%20No%3A%20605%0A%0A---------%0A%F0%9F%94%981%20X%20Margherita(standard)%20-%20Rs%20250%0A%0A%F0%9F%94%982%20X%20Farm%20House(standard)%20-%20Rs%20300%0A%0A---------%0A%F0%9F%A7%BE%20Total%3A%20Rs%20550%0A---------%0A%0A%20%20%20%0A%F0%9F%97%92%20Comment%0A%20%20%20%0A%0A%F0%9F%93%8D%20Delivery%20Details%0A%0AClient%3A%20%0AAddress%3A%2028%2C%2018th%20Cross%20Rd%2C%20Sector%207%2C%20HSR%20Layout%2C%0ADelivery%20time%3A%2012%3A00%20-%2012%3A30%0A%0A%0A%0ARk%20Pizza%20will%20confirm%20your%20order%20upon%20receiving%20the%20message.%0A%0A%0A%20%20%20%0A%F0%9F%92%B3%20Payment%20Options%0AWe%20accept%20Cash%20On%20Delivery%20and%20direct%20payments.&phone=389%2071%20605%20048"
 									class="btn botao-wpp"
+									@click="addOrder()"
 								>
-									<i class="fa fa-whatsapp"></i>
-									send whatsapp order
+									Order
 								</a>
 							</form>
 						</div>
@@ -158,11 +157,13 @@
 
 <script>
 import { defineComponent, ref, useStore, watch } from "@nuxtjs/composition-api";
+import { orderApi } from "@/api/order";
 
 export default defineComponent({
 	props: ["lists"],
 	setup() {
 		const store = useStore();
+		const { postOrder } = orderApi();
 
 		var orders = ref(0);
 		watch(
@@ -184,10 +185,15 @@ export default defineComponent({
 			}
 		);
 
+		const addOrder = async () => {
+			const response = await postOrder(store.state.products);
+		};
+
 		return {
 			orders,
 			addRemoveQuantity,
 			totalAmount,
+			addOrder,
 		};
 	},
 });

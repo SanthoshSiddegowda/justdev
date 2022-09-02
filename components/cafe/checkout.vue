@@ -18,7 +18,7 @@
 						>
 							<img src="icons/cancel.png" />
 						</button>
-						<h4 class="modal-title">Order Details</h4>
+						<h4 class="modal-title" v-if="companyCustomDetails.order_detail_text">{{ companyCustomDetails.order_detail_text }}</h4>
 					</div>
 					<div class="modal-body">
 						<div class="cart-information">
@@ -106,7 +106,8 @@
 															</div>
 														</div>
 														<p class="price">
-															&#8377;{{
+															<span v-html="companyCustomDetails.currency_symbol"></span>
+															{{
 																list.base_price
 															}}
 														</p>
@@ -117,20 +118,20 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<h3 class="total-amount">
-										Total:
+									<h3 class="total-amount" v-if="companyCustomDetails.total_text">
+										{{companyCustomDetails.total_text}}:
 										<span class="total-amount">
-											{{ totalAmount }} &#8377;
+											{{ totalAmount }} <span v-html="companyCustomDetails.currency_symbol"></span>
 										</span>
 									</h3>
 								</div>
-								<div class="form-group">
+								<!-- <div class="form-group">
 									<input
 										type="text"
 										class="form-control"
 										placeholder="Enter your name"
 									/>
-								</div>
+								</div> -->
 								<div class="form-group">
 									<input
 										type="number"
@@ -139,12 +140,14 @@
 									/>
 								</div>
 								<a
+									v-if = "companyCustomDetails.order_text && companyCustomDetails.secondary_color"
 									type="submit"
 									:class="{ disabled: totalAmount < 1 }"
 									class="btn botao-wpp"
+									:style="{ background : companyCustomDetails.secondary_color }"
 									@click="addOrder()"
 								>
-									Order
+									{{companyCustomDetails.order_text}}
 								</a>
 							</form>
 						</div>
@@ -160,7 +163,7 @@ import { defineComponent, ref, useStore, watch } from "@nuxtjs/composition-api";
 import { orderApi } from "@/api/order";
 
 export default defineComponent({
-	props: ["lists"],
+	props: ["lists","companyCustomDetails"],
 	setup() {
 		const store = useStore();
 		const { postOrder } = orderApi();

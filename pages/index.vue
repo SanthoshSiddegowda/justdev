@@ -12,19 +12,23 @@
 								<CafeLists
 									v-if="activeTab == 0"
 									:lists="lists"
+									:companyCustomDetails="companyCustomDetails"
 									@click="addRemoveQuantity()"
 								/>
 								<CafeReservation v-if="activeTab === 1" />
 								<CafeTerms v-if="activeTab === 2" />
 							</div>
 							<CafeProceed
-								:lists="lists"
+								:companyCustomDetails="companyCustomDetails"
 								v-if="activeTab === 0"
 							/>
 						</div>
 					</div>
 				</div>
-				<CafeCheckout :lists="lists" />
+				<CafeCheckout 
+					:lists="lists" 
+					:companyCustomDetails="companyCustomDetails"
+				/>
 			</div>
 		</div>
 	</div>
@@ -52,9 +56,9 @@ export default defineComponent({
 			items: [],
 			cart: [],
 		});
+		let companyCustomDetails = ref('');
 
 		const { title } = useMeta();
-		const { link } = useMeta();
 
 		const toggleTabs = function (tabNumber) {
 			activeTab.value = tabNumber;
@@ -77,6 +81,7 @@ export default defineComponent({
 		watch(
 			() => store.state.companyDetails,
 			(details) => {
+				companyCustomDetails.value = JSON.parse(details.custom_data);
 				title.value = details.name;
 				const loadProducts = async () => {
 					const response = await fetchProducts(details.uuid);
@@ -107,6 +112,7 @@ export default defineComponent({
 		return {
 			activeTab,
 			lists,
+			companyCustomDetails,
 			toggleTabs,
 			addQuantity,
 			removeQuantity,

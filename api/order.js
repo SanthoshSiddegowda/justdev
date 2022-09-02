@@ -4,7 +4,7 @@ export const orderApi = () => {
 	const { $api } = useContext();
 
 	const postOrder = async (orders) => {
-		const response = await $api.post("get-my-details", {
+		const response = await $api.post("order", {
 			orders,
 		});
 		return response.data;

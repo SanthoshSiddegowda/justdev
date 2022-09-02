@@ -64,7 +64,12 @@
 									</div>
 								</div>
 								<p class="price">
-									<span v-html=companyCustomDetails.currency_symbol></span>{{ list.base_price }}
+									<span
+										v-html="
+											companyCustomDetails.currency_symbol
+										"
+									></span
+									>{{ list.price }}
 								</p>
 							</div>
 						</div>
@@ -86,7 +91,7 @@
 import { defineComponent, reactive } from "@nuxtjs/composition-api";
 
 export default defineComponent({
-	props: ["lists","companyCustomDetails"],
+	props: ["lists", "companyCustomDetails"],
 	setup() {
 		function addRemoveQuantity(index, type) {
 			this.$parent.addRemoveQuantity(index, type);

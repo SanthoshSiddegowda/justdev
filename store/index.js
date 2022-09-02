@@ -14,11 +14,13 @@ export const mutations = {
 		if (!exists) {
 			state.products.push(product);
 		}
-		state.total += Number(product.base_price);
+		state.total += Number(product.total_price);
+		state.total = +state.total.toFixed(2);
 	},
 
 	reduceTotal(state, Price) {
-		state.total -= Number(Price);
+		state.total -= Price;
+		state.total = +state.total.toFixed(2);
 	},
 
 	addCompanyDetails(state, details) {

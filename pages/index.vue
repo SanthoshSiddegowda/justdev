@@ -25,8 +25,8 @@
 						</div>
 					</div>
 				</div>
-				<CafeCheckout 
-					:lists="lists" 
+				<CafeCheckout
+					:lists="lists"
 					:companyCustomDetails="companyCustomDetails"
 				/>
 			</div>
@@ -56,7 +56,7 @@ export default defineComponent({
 			items: [],
 			cart: [],
 		});
-		let companyCustomDetails = ref('');
+		let companyCustomDetails = ref("");
 
 		const { title } = useMeta();
 
@@ -93,20 +93,17 @@ export default defineComponent({
 
 		function addQuantity(index) {
 			lists.value.items[index].quantity += 1;
-			if (lists.value.items[index].quantity != 1) {
-				lists.value.items[index].price += Number(
-					lists.value.items[index].base_price
-				);
-			}
+			lists.value.items[index].total_price =
+				lists.value.items[index].price;
 			store.commit("addToCart", lists.value.items[index]);
 		}
 
 		function removeQuantity(index) {
 			lists.value.items[index].quantity -= 1;
-			lists.value.items[index].price -= Number(
-				lists.value.items[index].base_price
+			lists.value.items[index].total_price -= Number(
+				lists.value.items[index].price
 			);
-			store.commit("reduceTotal", lists.value.items[index].base_price);
+			store.commit("reduceTotal", lists.value.items[index].price);
 		}
 
 		return {

@@ -18,7 +18,12 @@
 						>
 							<img src="icons/cancel.png" />
 						</button>
-						<h4 class="modal-title" v-if="companyCustomDetails.order_detail_text">{{ companyCustomDetails.order_detail_text }}</h4>
+						<h4
+							class="modal-title"
+							v-if="companyCustomDetails.order_detail_text"
+						>
+							{{ companyCustomDetails.order_detail_text }}
+						</h4>
 					</div>
 					<div class="modal-body">
 						<div class="cart-information">
@@ -106,10 +111,12 @@
 															</div>
 														</div>
 														<p class="price">
-															<span v-html="companyCustomDetails.currency_symbol"></span>
-															{{
-																list.base_price
-															}}
+															<span
+																v-html="
+																	companyCustomDetails.currency_symbol
+																"
+															></span>
+															{{ list.price }}
 														</p>
 													</div>
 												</div>
@@ -118,10 +125,18 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<h3 class="total-amount" v-if="companyCustomDetails.total_text">
-										{{companyCustomDetails.total_text}}:
+									<h3
+										class="total-amount"
+										v-if="companyCustomDetails.total_text"
+									>
+										{{ companyCustomDetails.total_text }}:
 										<span class="total-amount">
-											{{ totalAmount }} <span v-html="companyCustomDetails.currency_symbol"></span>
+											{{ totalAmount }}
+											<span
+												v-html="
+													companyCustomDetails.currency_symbol
+												"
+											></span>
 										</span>
 									</h3>
 								</div>
@@ -140,14 +155,20 @@
 									/>
 								</div>
 								<a
-									v-if = "companyCustomDetails.order_text && companyCustomDetails.secondary_color"
+									v-if="
+										companyCustomDetails.order_text &&
+										companyCustomDetails.secondary_color
+									"
 									type="submit"
 									:class="{ disabled: totalAmount < 1 }"
 									class="btn botao-wpp"
-									:style="{ background : companyCustomDetails.secondary_color }"
+									:style="{
+										background:
+											companyCustomDetails.secondary_color,
+									}"
 									@click="addOrder()"
 								>
-									{{companyCustomDetails.order_text}}
+									{{ companyCustomDetails.order_text }}
 								</a>
 							</form>
 						</div>
@@ -163,7 +184,7 @@ import { defineComponent, ref, useStore, watch } from "@nuxtjs/composition-api";
 import { orderApi } from "@/api/order";
 
 export default defineComponent({
-	props: ["lists","companyCustomDetails"],
+	props: ["lists", "companyCustomDetails"],
 	setup() {
 		const store = useStore();
 		const { postOrder } = orderApi();

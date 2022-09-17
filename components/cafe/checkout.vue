@@ -30,7 +30,7 @@
 							<div class="ticket-type"></div>
 						</div>
 						<div class="contactForm">
-							<form>
+							<form @submit.prevent="addOrder()">
 								<div class="form-group">
 									<div
 										v-for="(list, index) in lists.items"
@@ -151,10 +151,14 @@
 									<input
 										type="number"
 										class="form-control"
+										v-model="user.mobile_no"
+										oninvalid="this.setCustomValidity('Please Enter Mobile Number')"
+										oninput="setCustomValidity('')"
 										placeholder="Enter your Mobile No."
+										required="true"
 									/>
 								</div>
-								<a
+								<button
 									v-if="
 										companyCustomDetails.order_text &&
 										companyCustomDetails.secondary_color
@@ -166,10 +170,9 @@
 										background:
 											companyCustomDetails.secondary_color,
 									}"
-									@click="addOrder()"
 								>
 									{{ companyCustomDetails.order_text }}
-								</a>
+								</button>
 							</form>
 						</div>
 					</div>
@@ -188,14 +191,7 @@ export default defineComponent({
 	setup() {
 		const store = useStore();
 		const { postOrder } = orderApi();
-
-		var orders = ref(0);
-		watch(
-			() => store.state.products,
-			(newValue) => {
-				orders.value = newValue;
-			}
-		);
+		var user = ref({});
 
 		function addRemoveQuantity(index, type) {
 			this.$parent.addRemoveQuantity(index, type);
@@ -210,11 +206,12 @@ export default defineComponent({
 		);
 
 		const addOrder = async () => {
-			const response = await postOrder(store.state.products);
+			const response = await postOrder(store.state.products, user.value);
+			alert(response.uuid);
 		};
 
 		return {
-			orders,
+			user,
 			addRemoveQuantity,
 			totalAmount,
 			addOrder,

@@ -15,8 +15,8 @@
 									:companyCustomDetails="companyCustomDetails"
 									@click="addRemoveQuantity()"
 								/>
-								<CafeReservation v-if="activeTab === 1" />
-								<CafeTerms v-if="activeTab === 2" />
+								<CafeReservation v-if="activeTab === 2" />
+								<CafeTerms v-if="activeTab === 1" />
 							</div>
 							<CafeProceed
 								:companyCustomDetails="companyCustomDetails"
@@ -54,7 +54,6 @@ export default defineComponent({
 		let activeTab = ref(0);
 		let lists = ref({
 			items: [],
-			cart: [],
 		});
 		let companyCustomDetails = ref("");
 

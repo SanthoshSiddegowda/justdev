@@ -29,7 +29,6 @@
 							:style="{
 								background: companyCustomDetails.primary_color,
 							}"
-							:class="{ disabled: totalAmount < 1 }"
 							>{{ companyCustomDetails.proceed_text }}</a
 						>
 					</div>

@@ -77,7 +77,7 @@ export default {
 	},
 
 	axios: {
-		baseURL: process.env.API_BASE_URL,
+		baseURL: "https://tzfmbr04i4.execute-api.ap-south-1.amazonaws.com/api/v1",
 		retry: { retries: 3 },
 	},
 };

@@ -7,6 +7,9 @@ export const companyApi = () => {
 		const response = await $api.post("get-my-details", {
 			domain: window.location.host,
 		});
+		if (response.code && response.code == 204) {
+			window.location = "/error/invalid-company";
+		}
 		return response.data;
 	};
 

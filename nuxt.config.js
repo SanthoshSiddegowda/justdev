@@ -57,8 +57,12 @@ export default {
 		"@nuxtjs/axios",
 	],
 
+	ssr: true,
+
+	target: "server",
+
 	// Modules: https://go.nuxtjs.dev/config-modules
-	modules: [],
+	modules: ["cookie-universal-nuxt"],
 
 	// Build Configuration: https://go.nuxtjs.dev/config-build
 	build: {},
@@ -77,7 +81,9 @@ export default {
 	},
 
 	axios: {
-		baseURL: "https://tzfmbr04i4.execute-api.ap-south-1.amazonaws.com/api/v1",
+		baseURL:
+			process.env.API_BASE_URL ??
+			"https://tzfmbr04i4.execute-api.ap-south-1.amazonaws.com/api/v1",
 		retry: { retries: 3 },
 	},
 };

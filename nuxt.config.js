@@ -62,7 +62,7 @@ export default {
 	target: "server",
 
 	// Modules: https://go.nuxtjs.dev/config-modules
-	modules: ["cookie-universal-nuxt"],
+	modules: [],
 
 	// Build Configuration: https://go.nuxtjs.dev/config-build
 	build: {},
